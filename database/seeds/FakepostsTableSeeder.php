@@ -16,8 +16,8 @@ class FakepostsTableSeeder extends Seeder
         for($i = 0; $i < 10; $i++) {
             $new_post = new Fakepost();
             $new_post->title = $faker->sentence(3);
-            $new_post->content = $faker-> $faker->paragraphs(2, true);
-            $new_post->author = $faker->name($gender = null|'male'|'female');
+            $new_post->content = $faker->paragraphs(2, true);
+            $new_post->author = $faker->name('female');
             $new_post->save();
         }
     }

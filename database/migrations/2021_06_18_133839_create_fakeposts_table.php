@@ -16,7 +16,7 @@ class CreateFakepostsTable extends Migration
         Schema::create('fakeposts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 80);
-            $table->text('contant');
+            $table->text('content');
             $table->string('author', 50);
             $table->timestamps();
         });
