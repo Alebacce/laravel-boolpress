@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+// Da usare sia Str che Faker ovviamente
 use Illuminate\Support\Str;
+// E chiaramente anche il Model
 use App\Fakepost;
 
 class FakepostsTableSeeder extends Seeder

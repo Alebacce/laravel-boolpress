@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+// L'HomeController pubblico, ritorna la home pubblica
 class HomeController extends Controller
 {
     /**

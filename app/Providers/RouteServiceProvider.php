@@ -21,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    // Mostro la pagina /admin come home dei loggati
     public const HOME = '/admin';
 
     /**

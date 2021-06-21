@@ -1,3 +1,24 @@
 label {
     display: block;
 }
+
+.card {
+    margin-bottom: 30px;
+    height: 350px;
+}
+
+.card-body {
+    overflow-y: hidden;
+    // height: 200px;
+}
+
+.btn-container {
+    display: flex;
+    padding: 15px;
+}
+
+.btn {
+    margin: 5px;
+    // display: inline;
+    width: max-content;
+}

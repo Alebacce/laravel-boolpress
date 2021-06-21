@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title_tag')
-    L'archivio nerd: Archivia Fumetto
-@endsection
-
 @section('content')
 
 
@@ -19,24 +15,32 @@
     @endif
 
     <div class="container">
-        <h1>Inserisci un nuovo post</h1>
+        <h1>Modifica post: {{ $post->title }}</h1>
         <div class="row">
-            <div class="col-4">
+            <div class="col">
                 {{-- Nuovo Articolo --}}
-                <form action="{{ route('admin.posts.store') }}" method="post">
+                <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="post">
                 @csrf
-                @method('POST')
-
-                <label for="title">Titolo</label>
-                <input type="text" name="title" id="title" value="{{ $post->title }}">
+                @method('PUT')
                 
-                <label for="author">Autore</label>
-                <input type="text" name="author" id="author" value="{{ $post->author }}">
+                {{-- {{ old('title', $post->title) }} vuol dire al refresh del form, mostra un old se c'è stata qualche modifica,
+                altrimenti mostra il normale attributo così com'era --}}
+                <div class="form-group">
+                    <label for="title">Titolo</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
+                </div>
 
-                <label for="content">Post</label>
-                <textarea name="content" id="content" cols="30" rows="10">{{ $post->content }}</textarea>
+                <div class="form-group">
+                    <label for="author">Autore</label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{ old('author', $post->author) }}">
+                </div>
 
-                <input type="submit" value="Modifica">
+                <div class="form-group">
+                    <label for="content">Contenuto</label>
+                    <textarea class="form-control" id="content" name="content" rows="10">{{  old('content', $post->content) }}</textarea>
+                </div>
+
+                <input class="btn btn-success" type="submit" value="Salva">
             </div>
         </div>
     </div>
