@@ -19,7 +19,7 @@ Auth::routes();
 // Pubbliche
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blog', 'PostController@index')->name('blog');
-// Passo lo slug qui
+// Passo lo slug qui, arriverò a show nel PostController publico
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
 
 // Private

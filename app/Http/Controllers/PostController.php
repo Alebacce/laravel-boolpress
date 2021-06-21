@@ -25,7 +25,7 @@ class PostController extends Controller
     // Viene letto lo slug anziché l'id essendo pubblico
     public function show($slug) {
         // Vado a ricercare nel Model il post con lo slug
-        // passato nella route
+        // passato nella route. Tanto è unico, per cui va bene first
         $post = Fakepost::where('slug', '=', $slug)->first();
 
         // Se il post non esiste allora dai error 404
