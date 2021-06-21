@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Tutte le route di Laravel login
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Pubbliche
+Route::get('/', 'HomeController@index')->name('home');
+
+// Private
+Route::prefix('admin')
+// ->namespace('Admin') cerca il controller nella cartella admin
+->namespace('Admin')
+->name('admin.')
+->middleware('auth')
+->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PostController');
+});

@@ -18,6 +18,7 @@ class CreateFakepostsTable extends Migration
             $table->string('title', 80);
             $table->text('content');
             $table->string('author', 50);
+            $table->string('slug')->unique()->default('');
             $table->timestamps();
         });
     }
