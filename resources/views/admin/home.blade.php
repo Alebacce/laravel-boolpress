@@ -7,15 +7,14 @@
             <h1>Questa è la Home per gli utenti loggati</h1>
             <div class="card">
                 <div class="card-body">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                    <h2>Ciao {{ $current_user->name }}!</h2>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Hai effettuato correttamente il log-in!') }}
                 </div>
             </div>
         </div>
