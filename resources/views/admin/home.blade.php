@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1>Questa è la Home per gli utenti loggati</h1>
+            <h1>Welcome on board!</h1>
             <div class="card">
                 <div class="card-body">
                     <h2>Ciao {{ $current_user->name }}!</h2>
