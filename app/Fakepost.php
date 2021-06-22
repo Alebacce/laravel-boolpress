@@ -13,5 +13,12 @@ class Fakepost extends Model
         'slug',
         'author'
     ];
+
+    public function categories() 
+    {   
+        // Il model a cui fa riferimento
+        // È connessa a una sola categoria
+        return $this->belongsTo('App\Category');
+    }
+    
 }
-        
