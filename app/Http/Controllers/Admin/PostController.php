@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Fakepost;
+use App\Category;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -22,7 +23,7 @@ class PostController extends Controller
 
         // È posts e non post perché l'array con tutti i posts e non il singolo post
         $data = [
-            'posts' => $posts
+            'posts' => $posts,
         ];
 
         return view('admin.posts.index', $data);
@@ -37,8 +38,14 @@ class PostController extends Controller
     // Create reinderizza semplicemente al form di creazion post
     // sarà l'action del form a mandare i dati a 'store'
     public function create()
-    {
-        return view('admin.posts.create');
+    {   
+        $categories = Category::all();
+
+        $data = [
+            'categories' => $categories
+        ];
+
+        return view('admin.posts.create', $data);
     }
 
     /**
@@ -119,7 +126,8 @@ class PostController extends Controller
         $post = Fakepost::findOrFail($id);
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'post_category' => $post->category
         ];
         
         // Passo i dati come $post essendo il singolo post e non posts e 
@@ -138,9 +146,11 @@ class PostController extends Controller
         // Con edit gli passo l'id dal tah <a> in index
         // se c'è mi manda alla pagina, altrimenti 404
         $post = Fakepost::findOrFail($id);
+        $categories = Category::all();
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ];
 
         // Ritorno la view coi $data siccome ci popolo il form per le modifiche
@@ -234,7 +244,8 @@ class PostController extends Controller
         $validation_rules = [
             'title' => 'required|min:5|max:80',
             'content' => 'required|max:65000',
-            'author' => 'required|min:3|max:50'
+            'author' => 'required|min:3|max:50',
+            'category_id' => 'nullable|exists:categories,id'
         ];
 
         return $validation_rules;

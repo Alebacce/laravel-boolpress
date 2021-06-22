@@ -11,10 +11,11 @@ class Fakepost extends Model
         'title',
         'content',
         'slug',
-        'author'
+        'author',
+        'category_id'
     ];
 
-    public function categories() 
+    public function category() 
     {   
         // Il model a cui fa riferimento
         // È connessa a una sola categoria
