@@ -18,8 +18,14 @@ class Fakepost extends Model
     public function category() 
     {   
         // Il model a cui fa riferimento
-        // È connessa a una sola categoria
+        // È connesso a una sola categoria
         return $this->belongsTo('App\Category');
     }
     
+    public function tags() 
+    {   
+        // Il model a cui fa riferimento
+        // È connesso a più tag
+        return $this->belongsToMany('App\Tag');
+    }
 }
