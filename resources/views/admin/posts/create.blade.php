@@ -58,8 +58,11 @@
                     @foreach ($tags as $tag)
                         <div class="form-check">
                             {{-- Rendo id e for univoci per ipovedenti, i quali cliccano la label e non il quadratino della checkbox --}}
-                            {{-- Non c'è la colonna per il name --}}
-                        <input class="form-check-input" name="tags[]" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}">
+                            {{-- Non c'è la colonna per il name, per cui colleziono i vari id in un array --}}
+                            {{-- All'invio sbagliato del form torno l'array corrente, quindi quello selezionato, contenuto in old('tags') 
+                                mettendogli checked, altrimenti un array vuoto se nulla era stato selezionato sfruttando la funzione in_array.
+                                Praticamente, se esiste old('tags') metti checked ad esso, altrimenti in un array vuoto non mettere nulla--}}
+                        <input class="form-check-input" name="tags[]" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" {{ in_array($tag->id,  old('tags', []),) ? 'checked' : '' }}>
                         <label class="form-check-label" for="tag-{{ $tag->id }}">
                             {{ $tag->name }}
                         </label>
