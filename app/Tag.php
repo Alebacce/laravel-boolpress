@@ -15,6 +15,6 @@ class Tag extends Model
     {   
         // Il model a cui fa riferimento
         // È connesso a più posts
-        return $this->belongsToMany('App\fakepost');
+        return $this->belongsToMany('App\Fakepost');
     }
 }

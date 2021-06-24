@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Fakepost;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -125,9 +126,11 @@ class PostController extends Controller
         // Verifico che nel Model ci sia l'id passato, se non c'è mi da 404
         $post = Fakepost::findOrFail($id);
 
+
         $data = [
             'post' => $post,
-            'post_category' => $post->category
+            'post_category' => $post->category,
+            'post_tags' => $post->tags
         ];
         
         // Passo i dati come $post essendo il singolo post e non posts e 
