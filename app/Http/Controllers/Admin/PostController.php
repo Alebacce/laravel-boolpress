@@ -261,7 +261,8 @@ class PostController extends Controller
             'title' => 'required|min:5|max:80',
             'content' => 'required|max:65000',
             'author' => 'required|min:3|max:50',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ];
 
         return $validation_rules;
