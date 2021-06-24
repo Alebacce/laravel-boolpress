@@ -53,6 +53,20 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <h6>Tags</h6>
+                    @foreach ($tags as $tag)
+                        <div class="form-check">
+                            {{-- Rendo id e for univoci per ipovedenti, i quali cliccano la label e non il quadratino della checkbox --}}
+                            {{-- Non c'è la colonna per il name --}}
+                        <input class="form-check-input" name="tags[]" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}">
+                        <label class="form-check-label" for="tag-{{ $tag->id }}">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                    @endforeach
+                </div>
+
                 <input class="btn btn-success" type="submit" value="Aggiungi">
             </div>
         </div>

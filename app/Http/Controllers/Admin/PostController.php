@@ -41,9 +41,11 @@ class PostController extends Controller
     public function create()
     {   
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         return view('admin.posts.create', $data);
@@ -64,7 +66,7 @@ class PostController extends Controller
         // ciò che è stato inviato col form
         $form_data = $request->all();
 
-        // dump($form_data);
+        // dd($form_data);
 
         // Calcolo dello slug
         // Creo lo slug a partire dal title nella $request, quindi in $form_data
@@ -107,6 +109,17 @@ class PostController extends Controller
         $post->fill($form_data);
         // E la salvo
         $post->save();
+
+        // verifico che esista l'array 'tags' passato e anche che sia un array
+        if(isset($form_data['tags']) && is_array($form_data['tags'])) {
+            // Va non direttamente a post, ma a tags, in questo caso va con le parentesi.
+            // Se voglio leggere i tags associati non metto le parentesi, se voglio usare un metodo
+            // di tags, in questo caso sync, devo usare le parentesi. tags ritorna un'istanza dell'oggetto
+            // di Eloquent, il responsabile della gestione del database, l'ORM.
+            $post->tags()->sync($form_data['tags']);
+        }
+        
+        
 
         // Faccio il redirect a show
         return redirect()->route('admin.posts.show', [
