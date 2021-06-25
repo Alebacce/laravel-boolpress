@@ -14,13 +14,22 @@ class PostController extends Controller
 
         $posts_for_response = [];
         foreach($posts as $post) {
+            $tags = $post->tags->toArray();
+            $return_tags = [];
+
+            foreach($tags as $tag) {
+                $return_tags[] = [
+                    'name' => $tag['name']
+                ];
+            }
+
             $posts_for_response[] = [
                 'id' => $post->id,
                 'title' => $post->title,
                 'author' => $post->author,
                 'content' => $post->content,
                 'category' => $post->category ? $post->category->name : '',
-                'tags' => $post->tags->toArray()
+                'tags' => $return_tags
             ];
         };
 
