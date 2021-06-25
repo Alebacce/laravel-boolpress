@@ -20,7 +20,7 @@
 
 
         {{-- Tags --}}
-        @if($post_tags)
+        @if($post_tags->isNotEmpty())
         <div class="mt-2 mb-2">
             <strong>Tag:</strong> 
             @foreach ($post_tags as $tag)
