@@ -258,6 +258,9 @@ class PostController extends Controller
     {   
         // Cerco l'istanza passata per id e la distruggo
         $post = Fakepost::find($id);
+        // Non posso eliminare un post con una relazione a una tabella ponte
+        // per cui prima elimino le relazioni e poi elimino il post
+        $post->tags()->sync([]);
         $post->delete();
 
         // Faccio il redirect alla pagina di lista post che è index
