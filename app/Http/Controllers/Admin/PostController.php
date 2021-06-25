@@ -163,10 +163,12 @@ class PostController extends Controller
         // se c'è mi manda alla pagina, altrimenti 404
         $post = Fakepost::findOrFail($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
             'post' => $post,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         // Ritorno la view coi $data siccome ci popolo il form per le modifiche
@@ -233,6 +235,14 @@ class PostController extends Controller
 
         // Aggiorno con le nuove informazioni modificate
         $post->update($form_data);
+
+        // verifico che esista l'array 'tags' passato e anche che sia un array
+        if(isset($form_data['tags']) && is_array($form_data['tags'])) {
+            $post->tags()->sync($form_data['tags']);
+        } else {
+            // Quindi array vuoto, ossia non sono stati selezionati tags
+            $post->tags()->sync([]);
+        }
         
         // Faccio il mio solito redirect a show con passaggio di id
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
