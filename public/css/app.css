@@ -10967,3 +10967,7 @@ label {
   width: max-content;
 }
 
+.vue-posts .card-body {
+  overflow-y: auto;
+}
+
