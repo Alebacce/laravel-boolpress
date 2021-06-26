@@ -41,6 +41,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('vue-post') }}">Post in Vue</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
