@@ -41,4 +41,9 @@ class PostController extends Controller
 
         return view('guest.posts.show', $data);
     }
+
+    // Funzione per la pagina Vue per vedere l'API stampata
+    public function vuePosts() {
+        return view('guest.posts.vue-posts');
+    }
 }

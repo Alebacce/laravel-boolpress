@@ -13,3 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+// Gli sto dicendo di compliare il mio file posts.js, presente in resources, all'interno di public
+mix.js('resources/js/posts.js', 'public/js')

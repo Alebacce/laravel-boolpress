@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blog', 'PostController@index')->name('blog');
 // Passo lo slug qui, arriverò a show nel PostController publico
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
+// Route per la pagina Vue per vedere l'API stampata
+Route::get('/vue-posts', 'PostController@vuePosts')->name('vue-post');
 
 // Private
 // prefix('admin') aggiunge /admin all'url di queste route 
