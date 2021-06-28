@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Ciao Admin!</h1>
-    <p>Un nuovo post è stato creato</p>
+    <p>Un nuovo post è stato creato. <br>
+        Post: {{ $new_post->title }}<br>
+    <a href="{{ route('admin.posts.show', ['post' => $new_post->id]) }}">Clicca qui</a> per leggerlo</p>
 </body>
 </html>
