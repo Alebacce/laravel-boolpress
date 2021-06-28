@@ -103,6 +103,6 @@
     </div>
 
     {{-- Footer Script --}}
-    @yield('footer-scripts');
+    @yield('footer-scripts')
 </body>
 </html>

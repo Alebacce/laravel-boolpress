@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    // Cambio il salvataggio dei file di deafault da "local" a "public",
+    // in modo che siano sempre visibili
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,6 +52,7 @@ return [
 
         'public' => [
             'driver' => 'local',
+            // Quando un file verrà caric<to sarà in app/public
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
