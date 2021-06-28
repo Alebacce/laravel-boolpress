@@ -18,6 +18,14 @@
         <h6>
             <strong>Slug:</strong> {{$post->slug}}
         </h6>
+        
+        <div class="post-img mt-2 mb-2">
+            {{-- L'immagine si trova nella copia in public di storage, la link utilizzando
+                asset così vado in public e collego a storage/ il path dell'immagine, che è appunto
+                $post->cover--}}
+            <img src="{{ asset('storage/' . $post->cover) }}" alt="">
+        </div>
+
         <p>
             {{$post->content}}
         </p>

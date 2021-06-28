@@ -10971,3 +10971,12 @@ label {
   overflow-y: auto;
 }
 
+.post-img {
+  max-width: 40%;
+}
+
+.post-img img {
+  width: 100%;
+  border-radius: 5px;
+}
+

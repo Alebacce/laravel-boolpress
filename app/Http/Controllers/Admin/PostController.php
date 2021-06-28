@@ -8,6 +8,7 @@ use App\Fakepost;
 use App\Category;
 use App\Tag;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -102,6 +103,19 @@ class PostController extends Controller
         // Quando lo slug è libero allora lo popolo. All'attributo 'slug' della 
         // $request do il valore di $new_slug, che provenga da fuori o dentro il ciclo
         $form_data['slug'] = $new_slug;
+
+        // Se c'è un immagine caricata dall'utente, la salvo in storage e aggiungo
+        // il path relativo a cover in $new_post_data
+        if(isset($form_data['cover-image'])) {
+            $new_img_path = Storage::put('posts-cover', $form_data['cover-image'] );
+
+            // Se $new_img_path è vera (per cui non è falsa e ha funzionato tornandomi una stringa)
+            // allora dico che l'attributo cover di $form_data, ossia uguale al nome della colonna nel
+            // database, è il path dell'immagine caricata ottenuto con Storage::put. 
+            if ($new_img_path) {
+                $form_data['cover'] = $new_img_path;
+            }
+        }
 
         // A questo punto creo una nuova istanza nella mia tabella
         $post = new Fakepost();

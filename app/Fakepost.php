@@ -12,6 +12,7 @@ class Fakepost extends Model
         'content',
         'slug',
         'author',
+        'cover',
         'category_id'
     ];
 
