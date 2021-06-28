@@ -137,8 +137,11 @@ class PostController extends Controller
         }
         
         
-        // Dopo che il post è stato creato, invio l'email all'amministratore del sito
-        Mail::to('alebacces@mail.it')->send(new NewPostAdminNotification());
+        // Dopo che il post è stato creato, invio l'email all'amministratore del sito.
+        // Inoltre passo $post come construct quando creo una nuova istanza di NewPostAdminNotification
+        // in modo che ogni volta il suo construct sia il post stesso, di modo da ottenere i dati di questo
+        // nel Model della mail 
+        Mail::to('alebacces@mail.it')->send(new NewPostAdminNotification($post));
 
         // Faccio il redirect a show
         return redirect()->route('admin.posts.show', [
