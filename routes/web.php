@@ -18,6 +18,12 @@ Auth::routes();
 
 // Pubbliche
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+// La route che gestisce i file inviati tramite form dei contatti.
+// Ha il metodo post e non get perché ovviamente i dati non devono essere visti
+// nell'url
+Route::post('/handle-new-contact', 'HomeController@handleNewContact')->name('handle-new-contact');
+Route::get('/contacts-thankyou', 'HomeController@contactsThankYou')->name('contacts-thankyou');
 Route::get('/blog', 'PostController@index')->name('blog');
 // Passo lo slug qui, arriverò a show nel PostController publico
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');

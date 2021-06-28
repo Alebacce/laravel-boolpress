@@ -45,6 +45,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('vue-post') }}">Post in Vue</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contacts') }}">Contattaci</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
