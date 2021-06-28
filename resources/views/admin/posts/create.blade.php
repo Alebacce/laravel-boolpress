@@ -23,6 +23,7 @@
         <div class="row">
             <div class="col">
                 {{-- Nuovo Articolo --}}
+                {{-- Senza enctype="multipart/form-data è impossibile caricare file" --}}
                 <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')

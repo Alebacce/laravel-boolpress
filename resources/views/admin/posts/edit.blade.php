@@ -19,7 +19,8 @@
         <div class="row">
             <div class="col">
                 {{-- Nuovo Articolo --}}
-                <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="post">
+                {{-- Senza enctype="multipart/form-data è impossibile caricare file" --}}
+                <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 
@@ -76,6 +77,18 @@
                         </div>
                     @endforeach
                 </div>
+
+                <div class="form-group">
+                    <label for="cover-image">Immagine di copertina</label>
+                    <input type="file" class="form-control-file" name="cover-image" id="cover-image">
+                </div>
+
+                @if($post->cover)
+                    <h5>Immagine corrente</h5>
+                    <div class="post-img">
+                        <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                    </div>
+                @endif
 
                 <input class="btn btn-success" type="submit" value="Salva">
             </div>

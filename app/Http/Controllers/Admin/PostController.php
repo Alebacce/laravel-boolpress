@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Fakepost;
 use App\Category;
 use App\Tag;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+// NewPostAdminNotification + la classe della mail che ho creato io
+use App\Mail\NewPostAdminNotification;
 
 class PostController extends Controller
 {
@@ -134,6 +137,8 @@ class PostController extends Controller
         }
         
         
+        // Dopo che il post è stato creato, invio l'email all'amministratore del sito
+        Mail::to('alebacces@mail.it')->send(new NewPostAdminNotification());
 
         // Faccio il redirect a show
         return redirect()->route('admin.posts.show', [
@@ -247,6 +252,19 @@ class PostController extends Controller
             $form_data['slug'] = $new_slug;
         }
 
+        // Se c'è un immagine caricata dall'utente, la salvo in storage e aggiungo
+        // il path relativo a cover in $new_post_data
+        if(isset($form_data['cover-image'])) {
+            $new_img_path = Storage::put('posts-cover', $form_data['cover-image'] );
+
+            // Se $new_img_path è vera (per cui non è falsa e ha funzionato tornandomi una stringa)
+            // allora dico che l'attributo cover di $form_data, ossia uguale al nome della colonna nel
+            // database, è il path dell'immagine caricata ottenuto con Storage::put. 
+            if ($new_img_path) {
+                $form_data['cover'] = $new_img_path;
+            }
+        }
+
         // Aggiorno con le nuove informazioni modificate
         $post->update($form_data);
 
@@ -288,8 +306,14 @@ class PostController extends Controller
             'title' => 'required|min:5|max:80',
             'content' => 'required|max:65000',
             'author' => 'required|min:3|max:50',
+            // exist impedisce che si modifichi l'id della categoria
+            // dall'inspector, se non esiste l'id invece di darmi error
+            // rivelando dati sensibili del mio database, da semplicemente 404
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'nullable|exists:tags,id'
+            'tags' => 'nullable|exists:tags,id',
+            // max 10000 indica la grandezza massima in kylobite
+            // si può fare anche con min
+            'cover-image' => 'nullable|mimes:jpg,png,jpeg,gif,svg'
         ];
 
         return $validation_rules;

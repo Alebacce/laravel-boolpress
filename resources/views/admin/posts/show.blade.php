@@ -19,12 +19,14 @@
             <strong>Slug:</strong> {{$post->slug}}
         </h6>
         
-        <div class="post-img mt-2 mb-2">
+        @if($post->cover) 
+            <div class="post-img mt-2 mb-2">
             {{-- L'immagine si trova nella copia in public di storage, la link utilizzando
                 asset così vado in public e collego a storage/ il path dell'immagine, che è appunto
                 $post->cover--}}
-            <img src="{{ asset('storage/' . $post->cover) }}" alt="">
+            <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
         </div>
+        @endif
 
         <p>
             {{$post->content}}
@@ -44,5 +46,13 @@
         <a href="{{ route('admin.posts.edit', ['post' => $post->id ]) }}" class="btn btn-secondary">
             Modifica dati
         </a>
+
+        {{-- Delete --}}
+        <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post">
+            @csrf
+            @method('DELETE')
+
+            <input type="submit" class="btn btn-danger" value="Cancella" onclick="return confirm('Sei sicuro di voler eliminare l\'elemento?')">
+        </form>
     </div>    
 @endsection
