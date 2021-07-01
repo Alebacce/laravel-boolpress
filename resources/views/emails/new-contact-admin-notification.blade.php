@@ -9,7 +9,21 @@
 <body>
     <h1>Ciao!</h1>
     <p>
-        Grazie per averci contattato!
+        Hai un nuovo contatto!
     </p>
+
+    <ul>
+        <li>
+            Da: {{ $new_contact_data['email'] }}
+        </li>
+
+        <li>
+            Nome: {{ $new_contact_data['name']  }}
+        </li>
+
+        <li>
+            Messaggio: {{ $new_contact_data['message']  }}
+        </li>
+    </ul>
 </body>
 </html>
