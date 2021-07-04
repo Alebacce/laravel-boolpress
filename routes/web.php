@@ -29,6 +29,8 @@ Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
 // Route per la pagina Vue per vedere l'API stampata
 Route::get('/vue-posts', 'PostController@vuePosts')->name('vue-post');
+Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
 
 // Private
 // prefix('admin') aggiunge /admin all'url di queste route 
