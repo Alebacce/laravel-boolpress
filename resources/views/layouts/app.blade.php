@@ -51,6 +51,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tags') }}">Tag</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('contacts') }}">Contattaci</a>
                         </li>
                     </ul>
