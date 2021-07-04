@@ -5,7 +5,11 @@
 
         {{-- Mostra la categoria solo se c'é --}}
         @if($post_category)
-        <div class="mt-2 mb-2">Categoria: {{ $post_category->name }}</div>
+        <div class="mt-2 mb-2">Categoria: 
+            <a href="{{ route('category-page', ['slug' => $post_category->slug]) }}">
+                {{ $post_category->name }}
+            </a>
+        </div>
         @endif
 
         <h1>{{$post->title}}</h1>
@@ -33,7 +37,9 @@
         <div class="mt-2 mb-2">
             <strong>Tag:</strong> 
             @foreach ($post_tags as $tag)
-                {{ $tag->name }}{{$loop->last ? '' : ', '}}
+                <a href="{{ route('tags-page', ['slug' => $tag->slug]) }}">
+                    {{ $tag->name }}{{$loop->last ? '' : ', '}}
+                </a>
             @endforeach    
         </div>
         @endif
