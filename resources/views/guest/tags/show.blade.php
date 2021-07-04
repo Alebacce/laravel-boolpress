@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container">
-        <h1>Lista dei tag</h1>
+        <h1>{{ $tag->name }}</h1>
 
         <ul>
-            @foreach ($tags as $tag)
+            @foreach ($tag->posts as $post)
                 <li>
-                    <a href="{{ route('tags-page', ['slug' => $tag->slug]) }}">
-                        {{ $tag->name }}
+                    <a href="{{ route('blog-page', ['slug' => $post->slug]) }}">
+                        {{ $post->title }}
                     </a>
                 </li>
             @endforeach

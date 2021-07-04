@@ -34,6 +34,7 @@ Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
 //Tags
 Route::get('/tags', 'TagController@index')->name('tags');
+Route::get('/tags/{slug}', 'TagController@show')->name('tags-page');
 
 // Private
 // prefix('admin') aggiunge /admin all'url di queste route 
